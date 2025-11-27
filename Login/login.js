@@ -10,6 +10,7 @@ function handleFormSubmit(event, role) {
         alert(`Successfully logged in as ${role}!`);
         btn.innerText = originalText;
         btn.style.opacity = '1';
+        window.location.href = `../${role}/${role}_dashboard.html`;
     }, 1000);
 }
 
@@ -29,3 +30,4 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
