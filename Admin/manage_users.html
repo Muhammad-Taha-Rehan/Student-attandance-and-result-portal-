@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users - SARP</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="Admin_style.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">S</div>
+                    <span class="logo-text">SARP</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="admin_dashboard.html" class="nav-item">
+                    <i class="fas fa-th-large"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="manage_users.html" class="nav-item active">
+                    <i class="fas fa-users"></i>
+                    <span>Manage Users</span>
+                </a>
+                <a href="manage_courses.html" class="nav-item">
+                    <i class="fas fa-book"></i>
+                    <span>Manage Courses</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Audit Logs</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../Login/admin_login.html" class="nav-item logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+
+                <div class="header-actions">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <span class="user-name">manaiharchan77@gmail.com<br><span class="user-role">Admin</span></span>
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Header -->
+            <section class="page-header">
+                <div class="page-title-section">
+                    <h1 class="page-title">Manage Users</h1>
+                    <p class="page-subtitle">Add, edit, or remove system users</p>
+                </div>
+                <button class="btn-add-user">
+                    <i class="fas fa-plus"></i>
+                    Add User
+                </button>
+            </section>
+
+            <!-- Stats Mini Cards -->
+            <section class="stats-mini-section">
+                <div class="stat-mini-card blue-border">
+                    <p class="stat-mini-label">Total Users</p>
+                    <h2 class="stat-mini-value">8</h2>
+                </div>
+
+                <div class="stat-mini-card green-border">
+                    <p class="stat-mini-label">Students</p>
+                    <h2 class="stat-mini-value">4</h2>
+                </div>
+
+                <div class="stat-mini-card blue-border">
+                    <p class="stat-mini-label">Teachers</p>
+                    <h2 class="stat-mini-value">3</h2>
+                </div>
+
+                <div class="stat-mini-card red-border">
+                    <p class="stat-mini-label">Admins</p>
+                    <h2 class="stat-mini-value">1</h2>
+                </div>
+            </section>
+
+            <!-- Filter Section -->
+            <section class="filter-section">
+                <div class="search-filter">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="userSearch" placeholder="Search by name or email...">
+                </div>
+                <select class="role-filter" id="roleFilter">
+                    <option value="">All Roles</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Student">Student</option>
+                    <option value="Admin">Admin</option>
+                </select>
+            </section>
+
+            <!-- Users Table -->
+            <section class="users-table-container">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Department</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <tr>
+                            <td>Sarah Johnson</td>
+                            <td>sarahj@sarp.edu</td>
+                            <td><span class="role-badge teacher">Teacher</span></td>
+                            <td>Computer Science</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td class="action-icons">
+                                <button class="icon-btn edit-btn" data-user="Sarah Johnson">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="icon-btn delete-btn" data-user="Sarah Johnson">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Michael Chen</td>
+                            <td>michaelc@sarp.edu</td>
+                            <td><span class="role-badge teacher">Teacher</span></td>
+                            <td>Mathematics</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td class="action-icons">
+                                <button class="icon-btn edit-btn" data-user="Michael Chen">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="icon-btn delete-btn" data-user="Michael Chen">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Emily Davis</td>
+                            <td>emilyd@sarp.edu</td>
+                            <td><span class="role-badge admin">Admin</span></td>
+                            <td>Administration</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td class="action-icons">
+                                <button class="icon-btn edit-btn" data-user="Emily Davis">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="icon-btn delete-btn" data-user="Emily Davis">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Alex Thompson</td>
+                            <td>alext@sarp.edu</td>
+                            <td><span class="role-badge student">Student</span></td>
+                            <td>Computer Science</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td class="action-icons">
+                                <button class="icon-btn edit-btn" data-user="Alex Thompson">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="icon-btn delete-btn" data-user="Alex Thompson">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Maria Garcia</td>
+                            <td>mariag@sarp.edu</td>
+                            <td><span class="role-badge student">Student</span></td>
+                            <td>Mathematics</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td class="action-icons">
+                                <button class="icon-btn edit-btn" data-user="Maria Garcia">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="icon-btn delete-btn" data-user="Maria Garcia">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>James Wilson</td>
+                            <td>jamesw@sarp.edu</td>
+                            <td><span class="role-badge teacher">Teacher</span></td>
+                            <td>Physics</td>
+                            <td><span class="status-badge inactive">Inactive</span></td>
+                            <td class="action-icons">
+                                <button class="icon-btn edit-btn" data-user="James Wilson">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="icon-btn delete-btn" data-user="James Wilson">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Sophia Lee</td>
+                            <td>sophial@sarp.edu</td>
+                            <td><span class="role-badge student">Student</span></td>
+                            <td>Computer Science</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td class="action-icons">
+                                <button class="icon-btn edit-btn" data-user="Sophia Lee">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="icon-btn delete-btn" data-user="Sophia Lee">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Daniel Brown</td>
+                            <td>danielb@sarp.edu</td>
+                            <td><span class="role-badge student">Student</span></td>
+                            <td>Chemistry</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td class="action-icons">
+                                <button class="icon-btn edit-btn" data-user="Daniel Brown">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="icon-btn delete-btn" data-user="Daniel Brown">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal-overlay" id="addUserModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 class="modal-title">Add New User</h2>
+                <button class="modal-close" id="closeModalBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="addUserForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select id="role" required>
+                            <option value="Student">Student</option>
+                            <option value="Teacher">Teacher</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <input type="text" id="department" placeholder="Enter department" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="cancelModalBtn">Cancel</button>
+                    <button type="submit" class="btn-submit">Add User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div class="modal-overlay" id="editUserModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 class="modal-title">Edit User</h2>
+                <button class="modal-close" id="closeEditModalBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="editUserForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="editFullName">Full Name</label>
+                        <input type="text" id="editFullName" placeholder="Enter full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEmail">Email Address</label>
+                        <input type="email" id="editEmail" placeholder="Enter email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editRole">Role</label>
+                        <select id="editRole" required>
+                            <option value="Student">Student</option>
+                            <option value="Teacher">Teacher</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDepartment">Department</label>
+                        <input type="text" id="editDepartment" placeholder="Enter department" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="cancelEditModalBtn">Cancel</button>
+                    <button type="submit" class="btn-submit">Update User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="manage_users.js"></script>
+</body>
+
+</html>
