@@ -2,6 +2,17 @@
 document.addEventListener('DOMContentLoaded', function () {
     initAttendanceChart();
     initDistributionChart();
+
+    // Update User Info from LocalStorage
+    const currentUserEmail = localStorage.getItem('currentUserEmail');
+    const currentUserName = localStorage.getItem('currentUserName');
+
+    if (currentUserEmail && currentUserName) {
+        const userNameElement = document.querySelector('.user-name');
+        if (userNameElement) {
+            userNameElement.innerHTML = `${currentUserName}<br><span class="user-role">Admin</span>`;
+        }
+    }
 });
 
 // Attendance Trend Line Chart
@@ -134,3 +145,4 @@ navItems.forEach(item => {
         }
     });
 });
+
