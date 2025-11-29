@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Results - SARP</title>
+    <link rel="stylesheet" href="student_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon">S</div>
+                <span class="logo-text">SARP</span>
+            </div>
+            <button class="toggle-btn" id="toggleSidebar">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="attendance.html" class="nav-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>My Attendance</span>
+            </a>
+            <a href="results.html" class="nav-item active">
+                <i class="fas fa-file-alt"></i>
+                <span>My Results</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="../Login/Student_login.html" class="nav-item logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+
+            <div class="header-actions">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </div>
+                <div class="user-profile">
+                    <div class="user-info">
+                        <span class="user-email">kghfk@.com</span>
+                        <span class="user-role">Student</span>
+                    </div>
+                    <div class="avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Results Content -->
+        <div class="dashboard-container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-title-section">
+                    <h1 class="page-title">My Results</h1>
+                    <p class="page-subtitle">View your academic performance and grades</p>
+                </div>
+                <button class="download-report-btn" id="downloadTranscript">
+                    <i class="fas fa-download"></i>
+                    Download Transcript
+                </button>
+            </div>
+
+            <!-- Performance Summary Cards -->
+            <div class="results-summary">
+                <div class="summary-card blue-border">
+                    <div class="summary-header">
+                        <span class="summary-label">CGPA</span>
+                        <div class="summary-icon blue">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+                    <div class="summary-value">9.12</div>
+                    <div class="summary-footer">Excellent Standing</div>
+                </div>
+
+                <div class="summary-card green-border">
+                    <div class="summary-header">
+                        <span class="summary-label">Overall %</span>
+                        <div class="summary-icon green">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <div class="summary-value">87%</div>
+                    <div class="summary-footer">Across all courses</div>
+                </div>
+
+                <div class="summary-card purple-border">
+                    <div class="summary-header">
+                        <span class="summary-label">Total Credits</span>
+                        <div class="summary-icon purple">
+                            <i class="fas fa-book"></i>
+                        </div>
+                    </div>
+                    <div class="summary-value">17</div>
+                    <div class="summary-footer">Completed this semester</div>
+                </div>
+
+                <div class="summary-card yellow-border">
+                    <div class="summary-header">
+                        <span class="summary-label">Class Rank</span>
+                        <div class="summary-icon yellow">
+                            <i class="fas fa-award"></i>
+                        </div>
+                    </div>
+                    <div class="summary-value">8/156</div>
+                    <div class="summary-footer">Top 5%</div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="results-charts-grid">
+                <!-- Course Performance Chart -->
+                <div class="card">
+                    <h2 class="card-title">Course Performance</h2>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Skills Analysis Chart -->
+                <div class="card">
+                    <h2 class="card-title">Skills Analysis</h2>
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Results Table -->
+            <div class="card full-width">
+                <h2 class="card-title">Detailed Results</h2>
+                <div class="results-table-container">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Credits</th>
+                                <th>Midterm</th>
+                                <th>Assignment</th>
+                                <th>Quiz</th>
+                                <th>Project</th>
+                                <th>Final</th>
+                                <th>Total</th>
+                                <th>Grade</th>
+                                <th>GPA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="course-cell">
+                                        <div class="course-code">CS101 - Data Structures</div>
+                                        <div class="course-name">Fall 2024</div>
+                                    </div>
+                                </td>
+                                <td>4</td>
+                                <td>92</td>
+                                <td>90</td>
+                                <td>88</td>
+                                <td>94</td>
+                                <td>91</td>
+                                <td>91%</td>
+                                <td><span class="grade-badge grade-a-plus">A+</span></td>
+                                <td>10.0</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="course-cell">
+                                        <div class="course-code">MAT201 - Calculus II</div>
+                                        <div class="course-name">Fall 2024</div>
+                                    </div>
+                                </td>
+                                <td>4</td>
+                                <td>88</td>
+                                <td>85</td>
+                                <td>90</td>
+                                <td>87</td>
+                                <td>89</td>
+                                <td>88%</td>
+                                <td><span class="grade-badge grade-a">A</span></td>
+                                <td>9.0</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="course-cell">
+                                        <div class="course-code">PHY301 - Quantum Physics</div>
+                                        <div class="course-name">Fall 2024</div>
+                                    </div>
+                                </td>
+                                <td>3</td>
+                                <td>75</td>
+                                <td>78</td>
+                                <td>72</td>
+                                <td>80</td>
+                                <td>76</td>
+                                <td>76%</td>
+                                <td><span class="grade-badge grade-b">B</span></td>
+                                <td>7.0</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="course-cell">
+                                        <div class="course-code">CS202 - Algorithms</div>
+                                        <div class="course-name">Fall 2024</div>
+                                    </div>
+                                </td>
+                                <td>4</td>
+                                <td>95</td>
+                                <td>93</td>
+                                <td>92</td>
+                                <td>96</td>
+                                <td>94</td>
+                                <td>94%</td>
+                                <td><span class="grade-badge grade-a-plus">A+</span></td>
+                                <td>10.0</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="course-cell">
+                                        <div class="course-code">ENG101 - Technical Writing</div>
+                                        <div class="course-name">Fall 2024</div>
+                                    </div>
+                                </td>
+                                <td>2</td>
+                                <td>85</td>
+                                <td>88</td>
+                                <td>90</td>
+                                <td>86</td>
+                                <td>87</td>
+                                <td>87%</td>
+                                <td><span class="grade-badge grade-a">A</span></td>
+                                <td>9.0</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="total-row">
+                                <td><strong>Total / Average</strong></td>
+                                <td><strong>17</strong></td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td><strong>87%</strong></td>
+                                <td>-</td>
+                                <td><strong>9.12</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Semester Summary -->
+            <div class="semester-summary-card">
+                <div class="summary-icon-box">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="summary-content">
+                    <h3 class="summary-title">Semester Summary</h3>
+                    <p class="summary-text">You've successfully completed <strong>5 courses</strong> with a CGPA of
+                        <strong>9.12</strong>.
+                    </p>
+                    <p class="summary-text">Keep up the excellent work! Your performance places you in the <strong>top
+                            5%</strong> of your class.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help Button -->
+        <button class="help-btn">
+            <i class="fas fa-question"></i>
+        </button>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="results_script.js"></script>
+</body>
+
+</html>
