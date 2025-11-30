@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Logs - Admin Panel</title>
+    <link rel="stylesheet" href="Admin_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">S</div>
+                    <span class="logo-text">SARP</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="admin_dashboard.html" class="nav-item">
+                    <i class="fas fa-th-large"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="manage_users.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Manage Users</span>
+                </a>
+                <a href="manage_courses.html" class="nav-item">
+                    <i class="fas fa-book"></i>
+                    <span>Manage Courses</span>
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="audit-logs.html" class="nav-item active">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Audit Logs</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../Login/admin_login.html" class="nav-item logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="header-actions">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <span class="user-name">safran@asd<br><span class="user-role">Admin</span></span>
+                        <div class="user-avatar"><i class="fas fa-user"></i></div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content audit-logs-page">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div>
+                        <h1>Audit Logs</h1>
+                        <p class="page-subtitle">Track all system activities and user actions</p>
+                    </div>
+                    <button class="btn-primary" id="exportLogsBtn">
+                        <i class="fas fa-download"></i>
+                        Export Logs
+                    </button>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="audit-stats-grid">
+                    <div class="audit-stat-card blue-border">
+                        <div class="stat-label">Total Events</div>
+                        <div class="stat-value" id="totalEvents">0</div>
+                        <div class="stat-note">Last 24 hours</div>
+                    </div>
+                    <div class="audit-stat-card green-border">
+                        <div class="stat-label">Successful</div>
+                        <div class="stat-value" id="successfulEvents">0</div>
+                        <div class="stat-note" id="successRate">0% success rate</div>
+                    </div>
+                    <div class="audit-stat-card red-border">
+                        <div class="stat-label">Errors</div>
+                        <div class="stat-value" id="errorEvents">0</div>
+                        <div class="stat-note">Require attention</div>
+                    </div>
+                    <div class="audit-stat-card orange-border">
+                        <div class="stat-label">Warnings</div>
+                        <div class="stat-value" id="warningEvents">0</div>
+                        <div class="stat-note">Minor issues</div>
+                    </div>
+                </div>
+
+                <!-- Search and Filters -->
+                <div class="audit-filters">
+                    <div class="filter-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search logs by user or action..." id="logsSearch">
+                    </div>
+                    <div class="filter-dropdowns">
+                        <select class="filter-select" id="typeFilter">
+                            <option value="all">All Types</option>
+                            <option value="success">Success</option>
+                            <option value="error">Error</option>
+                            <option value="info">Info</option>
+                            <option value="warning">Warning</option>
+                        </select>
+                        <select class="filter-select" id="roleFilter">
+                            <option value="all">All Roles</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Teacher">Teacher</option>
+                            <option value="Student">Student</option>
+                            <option value="System">System</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Logs List -->
+                <div class="audit-logs-list" id="auditLogsList">
+                    <!-- Log items will be injected here -->
+                </div>
+
+                <!-- Security Information Card -->
+                <div class="security-info-card">
+                    <div class="security-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="security-content">
+                        <h3>Security Information</h3>
+                        <p>Audit logs are retained for <strong>90 days</strong> for security compliance. All failed
+                            login attempts and sensitive operations are automatically flagged for review.</p>
+                        <p class="security-scan">Last security scan: <span id="lastScanTime">Today at 12:15 PM</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="audit-logs-script.js"></script>
+</body>
+
+</html>
