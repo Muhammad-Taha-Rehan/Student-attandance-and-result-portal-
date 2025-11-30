@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Student Records - SARP</title>
+    <link rel="stylesheet" href="teacher_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon">S</div>
+                <span class="logo-text">SARP</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="teacher_dashboard.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="teacher_mark_attendance.html" class="nav-item">
+                <i class="fas fa-user-check"></i>
+                <span>Mark Attendance</span>
+            </a>
+            <a href="teacher_upload_marks.html" class="nav-item">
+                <i class="fas fa-upload"></i>
+                <span>Upload Marks</span>
+            </a>
+            <a href="teacher_view_records.html" class="nav-item active">
+                <i class="fas fa-eye"></i>
+                <span>View Records</span>
+            </a>
+            <a href="teacher_settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="../Login/Teacher_login.html" class="nav-item logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+
+            <div class="header-actions">
+                <div class="notification-wrapper">
+                    <div class="notification-icon" id="notificationIcon">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="dropdown-header">
+                            <span class="dropdown-title">Notifications</span>
+                            <button class="mark-read-btn">Mark all as read</button>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notif-icon">
+                                    <i class="fas fa-clipboard-check"></i>
+                                </div>
+                                <div class="notif-content">
+                                    <p class="notif-message">Attendance not marked for <strong>CS101</strong> today.</p>
+                                    <span class="notif-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notif-icon">
+                                    <i class="fas fa-file-upload"></i>
+                                </div>
+                                <div class="notif-content">
+                                    <p class="notif-message">Submit midterm results for <strong>CS201</strong> by
+                                        Friday.</p>
+                                    <span class="notif-time">5 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notif-icon">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                                <div class="notif-content">
+                                    <p class="notif-message">New student added to <strong>CS301</strong>.</p>
+                                    <span class="notif-time">1 day ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-footer">
+                            <a href="#" class="view-all-btn">View All Notifications</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-profile">
+                    <div class="user-info">
+                        <span class="user-email">M.Abdullah@gmail.com</span>
+                        <span class="user-role">Teacher</span>
+                    </div>
+                    <div class="avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <div class="page-container">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">View Student Records</h1>
+                    <p class="page-subtitle">Access complete academic records</p>
+                </div>
+                <button class="btn btn-primary" id="exportReportBtn">
+                    <i class="fas fa-download"></i>
+                    Export Report
+                </button>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid-row stats-4col">
+                <div class="stat-card-small blue-border">
+                    <div class="stat-label">Total Students</div>
+                    <div class="stat-value-large" id="totalStudents">0</div>
+                </div>
+                <div class="stat-card-small green-border">
+                    <div class="stat-label">Avg. Attendance</div>
+                    <div class="stat-value-large stat-percentage" id="avgAttendance">0%</div>
+                </div>
+                <div class="stat-card-small purple-border">
+                    <div class="stat-label">Avg. Score</div>
+                    <div class="stat-value-large stat-percentage" id="avgScore">0%</div>
+                </div>
+                <div class="stat-card-small orange-border">
+                    <div class="stat-label">Pass Rate</div>
+                    <div class="stat-value-large stat-percentage" id="passRate">0%</div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-card">
+                <div class="filter-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search by name or roll number...">
+                </div>
+                <select id="courseFilter" class="form-control filter-select">
+                    <option value="">All Courses</option>
+                    <option value="CS101">CS101 - Data Structures</option>
+                    <option value="CS201">CS201 - Algorithms</option>
+                    <option value="CS301">CS301 - Database Systems</option>
+                </select>
+            </div>
+
+            <!-- Records Table -->
+            <div class="table-card">
+                <h2 class="section-title">Student Records</h2>
+                <div class="table-container">
+                    <table class="records-table" id="recordsTable">
+                        <thead>
+                            <tr>
+                                <th>Roll No</th>
+                                <th>Name</th>
+                                <th>Attendance</th>
+                                <th>Midterm</th>
+                                <th>Assignment</th>
+                                <th>Quiz</th>
+                                <th>Project</th>
+                                <th>Total</th>
+                                <th>Grade</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recordsTableBody">
+                            <!-- Dynamic content will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Student Detail Modal -->
+    <div class="modal" id="studentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalStudentName">Student Details</h2>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="student-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Roll Number:</span>
+                        <span class="info-value" id="modalRollNo">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Course:</span>
+                        <span class="info-value" id="modalCourse">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Attendance:</span>
+                        <span class="info-value" id="modalAttendance">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Overall Grade:</span>
+                        <span class="info-value" id="modalGrade">-</span>
+                    </div>
+                </div>
+
+                <h3 class="detail-section-title">Assessment Breakdown</h3>
+                <div class="assessment-grid">
+                    <div class="assessment-item">
+                        <span class="assessment-label">Midterm</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="modalMidtermBar"></div>
+                        </div>
+                        <span class="assessment-score" id="modalMidterm">0/100</span>
+                    </div>
+                    <div class="assessment-item">
+                        <span class="assessment-label">Assignment</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="modalAssignmentBar"></div>
+                        </div>
+                        <span class="assessment-score" id="modalAssignment">0/100</span>
+                    </div>
+                    <div class="assessment-item">
+                        <span class="assessment-label">Quiz</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="modalQuizBar"></div>
+                        </div>
+                        <span class="assessment-score" id="modalQuiz">0/100</span>
+                    </div>
+                    <div class="assessment-item">
+                        <span class="assessment-label">Project</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="modalProjectBar"></div>
+                        </div>
+                        <span class="assessment-score" id="modalProject">0/100</span>
+                    </div>
+                    <div class="assessment-item">
+                        <span class="assessment-label">Final</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="modalFinalBar"></div>
+                        </div>
+                        <span class="assessment-score" id="modalFinal">0/100</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Success!</span>
+    </div>
+
+    <script src="teacher_view_records.js"></script>
+</body>
+
+</html>
