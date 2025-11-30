@@ -6,15 +6,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const tableRows = tableBody.getElementsByTagName('tr');
     const addUserBtn = document.querySelector('.btn-add-user');
 
-    // Update User Info from LocalStorage
-    const currentUserEmail = localStorage.getItem('currentUserEmail');
-    const currentUserName = localStorage.getItem('currentUserName');
+    // Update User Info from login
+    const loginName = localStorage.getItem('currentUserName');
+    const loginEmail = localStorage.getItem('currentUserEmail');
+    const displayName = loginName || loginEmail || 'Admin';
 
-    if (currentUserEmail && currentUserName) {
-        const userNameElement = document.querySelector('.user-name');
-        if (userNameElement) {
-            userNameElement.innerHTML = `${currentUserName}<br><span class="user-role">Admin</span>`;
-        }
+    const userNameElement = document.querySelector('.user-name');
+    if (userNameElement) {
+        userNameElement.innerHTML = `${displayName}<br><span class="user-role">Admin</span>`;
     }
 
     // Modal Elements
