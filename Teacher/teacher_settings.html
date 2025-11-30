@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - SARP</title>
+    <link rel="stylesheet" href="teacher_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon">S</div>
+                <span class="logo-text">SARP</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="teacher_dashboard.html" class="nav-item">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="teacher_mark_attendance.html" class="nav-item">
+                <i class="fas fa-user-check"></i>
+                <span>Mark Attendance</span>
+            </a>
+            <a href="teacher_upload_marks.html" class="nav-item">
+                <i class="fas fa-upload"></i>
+                <span>Upload Marks</span>
+            </a>
+            <a href="teacher_view_records.html" class="nav-item">
+                <i class="fas fa-eye"></i>
+                <span>View Records</span>
+            </a>
+            <a href="teacher_settings.html" class="nav-item active">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="../Login/Teacher_login.html" class="nav-item logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+
+            <div class="header-actions">
+                <div class="notification-wrapper">
+                    <div class="notification-icon" id="notificationIcon">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="dropdown-header">
+                            <span class="dropdown-title">Notifications</span>
+                            <button class="mark-read-btn">Mark all as read</button>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notif-icon">
+                                    <i class="fas fa-clipboard-check"></i>
+                                </div>
+                                <div class="notif-content">
+                                    <p class="notif-message">Attendance not marked for <strong>CS101</strong> today.</p>
+                                    <span class="notif-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notif-icon">
+                                    <i class="fas fa-file-upload"></i>
+                                </div>
+                                <div class="notif-content">
+                                    <p class="notif-message">Submit midterm results for <strong>CS201</strong> by
+                                        Friday.</p>
+                                    <span class="notif-time">5 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notif-icon">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                                <div class="notif-content">
+                                    <p class="notif-message">New student added to <strong>CS301</strong>.</p>
+                                    <span class="notif-time">1 day ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-footer">
+                            <a href="#" class="view-all-btn">View All Notifications</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-profile">
+                    <div class="user-info">
+                        <span class="user-email" id="headerEmail">M.Abdullah@gmail.com</span>
+                        <span class="user-role">Teacher</span>
+                    </div>
+                    <div class="avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <div class="settings-container">
+            <div class="settings-header">
+                <h1 class="page-title">Settings</h1>
+                <p class="page-subtitle">Manage your account settings and preferences</p>
+            </div>
+
+            <div class="settings-layout">
+                <!-- Settings Sidebar -->
+                <div class="settings-sidebar">
+                    <button class="settings-tab-btn active" data-tab="profile">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </button>
+                    <button class="settings-tab-btn" data-tab="security">
+                        <i class="fas fa-lock"></i>
+                        <span>Security</span>
+                    </button>
+                    <button class="settings-tab-btn" data-tab="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </button>
+                    <button class="settings-tab-btn" data-tab="preferences">
+                        <i class="fas fa-sliders-h"></i>
+                        <span>Preferences</span>
+                    </button>
+                </div>
+
+                <!-- Settings Content -->
+                <div class="settings-content">
+                    <!-- Profile Tab -->
+                    <div class="settings-tab active" id="profile-tab">
+                        <div class="tab-header">
+                            <div class="tab-icon blue">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h2 class="tab-title">Profile Information</h2>
+                        </div>
+
+                        <form id="profileForm" class="settings-form">
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" id="firstName" class="form-control" placeholder="John">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" class="form-control" placeholder="Doe">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" placeholder="john.doe@sarp.edu">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" class="form-control" placeholder="+1 (555) 123-4567">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="role">Role</label>
+                                <input type="text" id="role" class="form-control" value="Teacher" disabled>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bio">Bio</label>
+                                <textarea id="bio" class="form-control" rows="4"
+                                    placeholder="Tell us about yourself..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Changes
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Security Tab -->
+                    <div class="settings-tab" id="security-tab">
+                        <div class="tab-header">
+                            <div class="tab-icon red">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h2 class="tab-title">Security Settings</h2>
+                        </div>
+
+                        <form id="securityForm" class="settings-form">
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword" class="form-control"
+                                    placeholder="Enter current password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword" class="form-control"
+                                    placeholder="Enter new password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm New Password</label>
+                                <input type="password" id="confirmPassword" class="form-control"
+                                    placeholder="Confirm new password">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-lock"></i>
+                                Change Password
+                            </button>
+                        </form>
+
+                        <div class="section-divider"></div>
+
+                        <div class="security-section">
+                            <h3 class="section-subtitle">Two-Factor Authentication</h3>
+                            <p class="section-description">Add an extra layer of security to your account by enabling
+                                two-factor authentication.</p>
+                            <button class="btn btn-outline" id="enable2FABtn">
+                                <i class="fas fa-mobile-alt"></i>
+                                Enable 2FA
+                            </button>
+                        </div>
+
+                        <div class="section-divider"></div>
+
+                        <div class="security-tips">
+                            <div class="tips-header">
+                                <div class="tips-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <h3 class="tips-title">Security Tips</h3>
+                            </div>
+                            <ul class="tips-list">
+                                <li>Use a strong, unique password</li>
+                                <li>Enable two-factor authentication</li>
+                                <li>Never share your password with anyone</li>
+                                <li>Regularly update your password</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Tab -->
+                    <div class="settings-tab" id="notifications-tab">
+                        <div class="tab-header">
+                            <div class="tab-icon green">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <h2 class="tab-title">Notification Preferences</h2>
+                        </div>
+
+                        <form id="notificationsForm" class="settings-form">
+                            <div class="notification-setting">
+                                <div class="notification-info">
+                                    <div class="notif-setting-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="notif-setting-content">
+                                        <h4 class="notif-setting-title">Email Notifications</h4>
+                                        <p class="notif-setting-desc">Receive notifications via email</p>
+                                    </div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="emailNotifications" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="notification-setting">
+                                <div class="notification-info">
+                                    <div class="notif-setting-icon">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <div class="notif-setting-content">
+                                        <h4 class="notif-setting-title">Push Notifications</h4>
+                                        <p class="notif-setting-desc">Receive push notifications in browser</p>
+                                    </div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="pushNotifications" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="notification-setting">
+                                <div class="notification-info">
+                                    <div class="notif-setting-icon">
+                                        <i class="fas fa-bullhorn"></i>
+                                    </div>
+                                    <div class="notif-setting-content">
+                                        <h4 class="notif-setting-title">Announcements</h4>
+                                        <p class="notif-setting-desc">Receive system announcements</p>
+                                    </div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="announcements" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Preferences
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Preferences Tab -->
+                    <div class="settings-tab" id="preferences-tab">
+                        <div class="tab-header">
+                            <div class="tab-icon orange">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <h2 class="tab-title">General Preferences</h2>
+                        </div>
+
+                        <form id="preferencesForm" class="settings-form">
+                            <div class="form-group">
+                                <label for="language">Language</label>
+                                <select id="language" class="form-control">
+                                    <option value="en">English (US)</option>
+                                    <option value="es">Spanish</option>
+                                    <option value="fr">French</option>
+                                    <option value="de">German</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="timezone">Timezone</label>
+                                <select id="timezone" class="form-control">
+                                    <option value="UTC-5">UTC-5 (Eastern Time)</option>
+                                    <option value="UTC-6">UTC-6 (Central Time)</option>
+                                    <option value="UTC-7">UTC-7 (Mountain Time)</option>
+                                    <option value="UTC-8">UTC-8 (Pacific Time)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dateFormat">Date Format</label>
+                                <select id="dateFormat" class="form-control">
+                                    <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                                    <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                                    <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Preferences
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Success!</span>
+    </div>
+
+    <script src="teacher_settings.js"></script>
+</body>
+
+</html>
