@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Analytics - SARP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="Admin_style.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">S</div>
+                    <span class="logo-text">SARP</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="admin_dashboard.html" class="nav-item"><i
+                        class="fas fa-th-large"></i><span>Dashboard</span></a>
+                <a href="manage_users.html" class="nav-item"><i class="fas fa-users"></i><span>Manage Users</span></a>
+                <a href="manage_courses.html" class="nav-item"><i class="fas fa-book"></i><span>Manage
+                        Courses</span></a>
+                <a href="reports.html" class="nav-item active"><i class="fas fa-chart-bar"></i><span>Reports</span></a>
+                <a href="audit-logs.html" class="nav-item"><i class="fas fa-clipboard-list"></i><span>Audit
+                        Logs</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-cog"></i><span>Settings</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../Login/admin_login.html" class="nav-item logout"><i
+                        class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="Search..."></div>
+                <div class="header-actions">
+                    <div class="notification"><i class="fas fa-bell"></i><span class="badge">3</span></div>
+                    <div class="user-profile">
+                        <span class="user-name">admin<br><span class="user-role">Admin</span></span>
+                        <div class="user-avatar"><i class="fas fa-user"></i></div>
+                    </div>
+                </div>
+            </header>
+            <section class="page-header">
+                <div class="page-title-section">
+                    <h1 class="page-title">Reports & Analytics</h1>
+                    <p class="page-subtitle">Generate and download comprehensive reports</p>
+                </div>
+            </section>
+            <section class="stats-mini-section">
+                <div class="stat-mini-card" style="border-top-color: #3b82f6;">
+                    <p class="stat-mini-label">Avg. Attendance</p>
+                    <h2 class="stat-mini-value">87.7%</h2>
+                    <span class="stat-change-small positive">↑ 2.3% from last month</span>
+                </div>
+                <div class="stat-mini-card" style="border-top-color: #10b981;">
+                    <p class="stat-mini-label">Pass Rate</p>
+                    <h2 class="stat-mini-value">89.7%</h2>
+                    <span class="stat-change-small positive">↑ 1.12% from last month</span>
+                </div>
+                <div class="stat-mini-card" style="border-top-color: #3b82f6;">
+                    <p class="stat-mini-label">Total Students</p>
+                    <h2 class="stat-mini-value">1,247</h2>
+                    <span class="stat-change-small positive">↑ 45 new enrollments</span>
+                </div>
+                <div class="stat-mini-card" style="border-top-color: #f59e0b;">
+                    <p class="stat-mini-label">Active Courses</p>
+                    <h2 class="stat-mini-value">42</h2>
+                    <span class="stat-change-small">0 departments</span>
+                </div>
+            </section>
+            <section class="charts-section">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Monthly Trends</h3>
+                        <button class="icon-btn" onclick="downloadChartData('monthly')"><i
+                                class="fas fa-download"></i></button>
+                    </div>
+                    <canvas id="monthlyTrendsChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Department Performance</h3>
+                        <button class="icon-btn" onclick="downloadChartData('department')"><i
+                                class="fas fa-download"></i></button>
+                    </div>
+                    <canvas id="departmentChart"></canvas>
+                </div>
+            </section>
+            <section class="reports-section">
+                <h2 class="section-title">Generate Reports</h2>
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <div class="report-icon blue-bg"><i class="fas fa-user-check"></i></div>
+                        <div class="report-info">
+                            <h3 class="report-title">Attendance Report</h3>
+                            <p class="report-desc">Comprehensive attendance data for all courses</p>
+                        </div>
+                        <button class="btn-download" onclick="downloadReport('attendance')">
+                            <i class="fas fa-download"></i> Download Excel
+                        </button>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-icon green-bg"><i class="fas fa-chart-line"></i></div>
+                        <div class="report-info">
+                            <h3 class="report-title">Academic Performance Report</h3>
+                            <p class="report-desc">Student grades and performance metrics</p>
+                        </div>
+                        <button class="btn-download" onclick="downloadReport('academic')">
+                            <i class="fas fa-download"></i> Download Excel
+                        </button>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-icon orange-bg"><i class="fas fa-book-open"></i></div>
+                        <div class="report-info">
+                            <h3 class="report-title">Course Statistics Report</h3>
+                            <p class="report-desc">Enrollment and completion rates by course</p>
+                        </div>
+                        <button class="btn-download" onclick="downloadReport('course')">
+                            <i class="fas fa-download"></i> Download Excel
+                        </button>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-icon red-bg"><i class="fas fa-calendar-alt"></i></div>
+                        <div class="report-info">
+                            <h3 class="report-title">Monthly Summary Report</h3>
+                            <p class="report-desc">Monthly overview of all metrics</p>
+                        </div>
+                        <button class="btn-download" onclick="downloadReport('monthly')">
+                            <i class="fas fa-download"></i> Download Excel
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <section class="dept-stats-section">
+                <div class="section-header">
+                    <h2 class="section-title">Department Statistics</h2>
+                    <button class="btn-export" onclick="exportDepartmentStats()">
+                        <i class="fas fa-file-excel"></i> Export All
+                    </button>
+                </div>
+                <div class="dept-table-container">
+                    <table class="dept-table">
+                        <thead>
+                            <tr>
+                                <th>Department</th>
+                                <th>Students</th>
+                                <th>Avg. Grade</th>
+                                <th>Performance</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="deptTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="reports.js"></script>
+</body>
+
+</html>
