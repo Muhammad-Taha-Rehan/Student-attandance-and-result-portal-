@@ -3,6 +3,7 @@ const app = document.getElementById('app');
 // Data for the portal
 const portalData = {
     header: {
+        logoText: 'S',
         title: 'Student Attendance & Result Portal',
         subtitle: 'Select your role to continue'
     },
@@ -40,6 +41,9 @@ function createHeader(data) {
     header.className = 'header';
 
     header.innerHTML = `
+        <div class="logo-container">
+            <span class="logo-text">${data.logoText}</span>
+        </div>
         <h1 class="main-title">${data.title}</h1>
         <p class="sub-title">${data.subtitle}</p>
     `;
