@@ -43,6 +43,30 @@ body {
     animation: fadeInDown 0.8s ease-out;
 }
 
+.logo-container {
+    width: 80px;
+    height: 80px;
+    background: var(--primary-color);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: var(--shadow-md);
+    transform: rotate(-5deg);
+    transition: transform 0.3s ease;
+}
+
+.logo-container:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.logo-text {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
 .main-title {
     font-size: 2.5rem;
     font-weight: 800;
